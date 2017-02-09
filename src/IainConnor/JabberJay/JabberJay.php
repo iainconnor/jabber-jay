@@ -291,13 +291,16 @@ class JabberJay
      * Presented in order of the method signature.
      *
      * @param Endpoint $endpoint
+     * @param array $inputs If provided, values will be used instead of mocking where keys match method input variable names.
      * @return array
      */
-    public function getMockInputsForMethodForEndpoint(Endpoint $endpoint) {
+    public function getMockInputsForMethodForEndpoint(Endpoint $endpoint, array $inputs = []) {
         $mockedInputs = [];
 
         foreach ( $endpoint->inputs as $input ) {
-            if ( $input->typeHint->defaultValue ) {
+            if ( array_key_exists($input->variableName, $inputs) ) {
+                $mockedValue = $inputs[$input->variableName];
+            } else if ( $input->typeHint->defaultValue ) {
                 $mockedValue = $input->typeHint->defaultValue;
             } else {
                 $typeToMock = $input->typeHint->types[rand(0, count($input->typeHint->types) - 1)];
@@ -324,10 +327,11 @@ class JabberJay
      * Creates a mock request for the given endpoint.
      *
      * @param Endpoint $endpoint
+     * @param array $inputs If provided, values will be used instead of mocking where keys match method input variable names.
      * @return Request
      */
-    public function getMockRequestForEndpoint(Endpoint $endpoint) {
-        $mockedInputs = $this->getMockInputsForMethodForEndpoint($endpoint);
+    public function getMockRequestForEndpoint(Endpoint $endpoint, array $inputs = []) {
+        $mockedInputs = $this->getMockInputsForMethodForEndpoint($endpoint, $inputs);
 
         $path = $endpoint->httpMethod->path;
         foreach ( $endpoint->inputs as $input ) {

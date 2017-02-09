@@ -255,7 +255,7 @@ class JabberJay
      * @return object
      */
     protected function mockIncludingWrappers($type) {
-        $mock = $this->mockingJay->mock($this->getActualClassForType($type));
+        $mock = $this->mockingJay->mock($this->gameMaker->getActualClassForType($type));
 
         foreach ( $this->gameMaker->getUniqueObjects() as $object ) {
             if ( $object->uniqueName == $type ) {
@@ -272,28 +272,6 @@ class JabberJay
         }
 
         return $mock;
-    }
-
-    /**
-     * Retrieves the actual class for the given type from the GameMaker instance.
-     *
-     * @param $type
-     * @return string
-     */
-    protected function getActualClassForType($type) {
-        if ( class_exists($type) ) {
-
-            return $type;
-        }
-
-        foreach ( $this->gameMaker->getUniqueObjects() as $object ) {
-            if ( $object->uniqueName == $type ) {
-
-                return $object->class;
-            }
-        }
-
-        return $type;
     }
 
     /**
@@ -314,10 +292,10 @@ class JabberJay
             } else if ( $typeToMock->type == TypeHint::ARRAY_TYPE ) {
                 $mockedValue = [];
                 for ($i=0; $i<rand(0, 10); $i++) {
-                    $mockedValue[] = $this->mockingJay->mock($this->getActualClassForType($typeToMock->genericType));
+                    $mockedValue[] = $this->mockingJay->mock($this->gameMaker->getActualClassForType($typeToMock->genericType));
                 }
             } else {
-                $mockedValue = $this->mockingJay->mock($this->getActualClassForType($typeToMock->type));
+                $mockedValue = $this->mockingJay->mock($this->gameMaker->getActualClassForType($typeToMock->type));
             }
 
             switch ($input->in) {

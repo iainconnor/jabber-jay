@@ -629,12 +629,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "791ac099b1687c0bd82f7230ec0d8fc8550c81dc"
+                "reference": "87b6a1d1b0577c072e3391c67ef17ae48b1f9ab4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/791ac099b1687c0bd82f7230ec0d8fc8550c81dc",
-                "reference": "791ac099b1687c0bd82f7230ec0d8fc8550c81dc",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/87b6a1d1b0577c072e3391c67ef17ae48b1f9ab4",
+                "reference": "87b6a1d1b0577c072e3391c67ef17ae48b1f9ab4",
                 "shasum": ""
             },
             "require": {
@@ -670,7 +670,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-02 20:33:09"
+            "time": "2017-02-08 22:54:13"
         },
         {
             "name": "symfony/http-foundation",

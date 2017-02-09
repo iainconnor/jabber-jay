@@ -73,14 +73,18 @@ $gameMaker->setAnnotationReader(
         new \Doctrine\Common\Cache\ArrayCache()
     ));
 
-$gameMaker->parseController(OutputWrapper::class);
+// Parse controllers into a useable format.
 $fooController = $gameMaker->parseController(Foo::class);
 
+// Then boot an instance of the router.
 $jabberJay = \IainConnor\JabberJay\JabberJay::instance($gameMaker);
 $jabberJay->addController($fooController);
 
+// Optionally create requests, or use Request::createFromGlobals() parse the current request.
 $request = $jabberJay->getMockRequestForEndpoint($fooController->endpoints[0]);
 
+// And get the response.
 $response = $jabberJay->performRequest($request);
 
+// And output it.
 $response->send();

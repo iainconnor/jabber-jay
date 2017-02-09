@@ -338,12 +338,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/iainconnor/game-maker.git",
-                "reference": "8306ef37fee0d090575752ecf781ae68d37a1b2d"
+                "reference": "b6ee897451bce75222cd8d6e6c7bee6da9cef5b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/iainconnor/game-maker/zipball/8306ef37fee0d090575752ecf781ae68d37a1b2d",
-                "reference": "8306ef37fee0d090575752ecf781ae68d37a1b2d",
+                "url": "https://api.github.com/repos/iainconnor/game-maker/zipball/b6ee897451bce75222cd8d6e6c7bee6da9cef5b7",
+                "reference": "b6ee897451bce75222cd8d6e6c7bee6da9cef5b7",
                 "shasum": ""
             },
             "require": {
@@ -367,7 +367,7 @@
                 }
             ],
             "description": "API documentation by Annotations.",
-            "time": "2017-02-08 23:33:56"
+            "time": "2017-02-09 02:00:39"
         },
         {
             "name": "iainconnor/mocking-jay",

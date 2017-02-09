@@ -132,6 +132,18 @@ class JabberJay
     public function performRequest(Request $request, $allowMockResponse = true, $forceMockResponse = false) {
         $resolvedRequest = $this->resolveRequest($request);
 
+        return $this->performResolvedRequest($resolvedRequest, $allowMockResponse, $forceMockResponse);
+    }
+
+    /**
+     * Calls the underlying method and returns its response encoded as JSON.
+     *
+     * @param ResolvedRequest $resolvedRequest
+     * @param bool $allowMockResponse
+     * @param bool $forceMockResponse
+     * @return mixed|null|Response
+     */
+    public function performResolvedRequest(ResolvedRequest $resolvedRequest, $allowMockResponse = true, $forceMockResponse = false) {
         $responseData = null;
         if ( !$forceMockResponse ) {
             $responseData = call_user_func_array($resolvedRequest->callableController, $resolvedRequest->callableInputs);

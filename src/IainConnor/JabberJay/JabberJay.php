@@ -275,36 +275,65 @@ class JabberJay
     }
 
     /**
+     * Gets an array where keys are the method's inputs and values are mocked values that satisfy them.
+     * Presented in order of the method signature.
+     *
+     * @param Endpoint $endpoint
+     * @return array
+     */
+    public function getMockInputsForMethodForEndpoint(Endpoint $endpoint) {
+        $mockedInputs = [];
+
+        foreach ( $endpoint->inputs as $input ) {
+            if ( $input->typeHint->defaultValue ) {
+                $mockedValue = $input->typeHint->defaultValue;
+            } else {
+                $typeToMock = $input->typeHint->types[rand(0, count($input->typeHint->types) - 1)];
+
+                if ($typeToMock->type == null) {
+                    $mockedValue = null;
+                } else if ($typeToMock->type == TypeHint::ARRAY_TYPE) {
+                    $mockedValue = [];
+                    for ($i = 0; $i < rand(0, 10); $i++) {
+                        $mockedValue[] = $this->mockingJay->mock($this->gameMaker->getActualClassForType($typeToMock->genericType));
+                    }
+                } else {
+                    $mockedValue = $this->mockingJay->mock($this->gameMaker->getActualClassForType($typeToMock->type));
+                }
+            }
+
+            $mockedInputs[$input->variableName] = $mockedValue;
+        }
+
+        return $mockedInputs;
+    }
+
+    /**
      * Creates a mock request for the given endpoint.
      *
      * @param Endpoint $endpoint
      * @return Request
      */
     public function getMockRequestForEndpoint(Endpoint $endpoint) {
-        $path = preg_replace("/({.*?})/", $this->mockingJay->mock('string'), $endpoint->httpMethod->path);
-        $request = Request::create($path, GameMaker::getAfterLastSlash(get_class($endpoint->httpMethod)));
+        $mockedInputs = $this->getMockInputsForMethodForEndpoint($endpoint);
+
+        $path = $endpoint->httpMethod->path;
+        foreach ( $endpoint->inputs as $input ) {
+            if ( $input->in == "PATH" ) {
+                $path = str_replace("{" . $input->name . "}", $mockedInputs[$input->variableName], $path);
+            }
+        }
+
+        $request = Request::create($endpoint->httpMethod->path, GameMaker::getAfterLastSlash(get_class($endpoint->httpMethod)));
 
         foreach ( $endpoint->inputs as $input ) {
-            $typeToMock = $input->typeHint->types[rand(0, count($input->typeHint->types) - 1)];
-
-            if ( $typeToMock->type == null ) {
-                $mockedValue = null;
-            } else if ( $typeToMock->type == TypeHint::ARRAY_TYPE ) {
-                $mockedValue = [];
-                for ($i=0; $i<rand(0, 10); $i++) {
-                    $mockedValue[] = $this->mockingJay->mock($this->gameMaker->getActualClassForType($typeToMock->genericType));
-                }
-            } else {
-                $mockedValue = $this->mockingJay->mock($this->gameMaker->getActualClassForType($typeToMock->type));
-            }
-
             switch ($input->in) {
                 case "QUERY":
-                    $request->query->set($input->name, $mockedValue);
+                    $request->query->set($input->name, $mockedInputs[$input->variableName]);
 
                     break;
                 case "FORM":
-                    $request->request->set($input->name, $mockedValue);
+                    $request->request->set($input->name, $mockedInputs[$input->variableName]);
 
                     break;
                 case "BODY":
@@ -314,13 +343,13 @@ class JabberJay
                         $existingContentJson = [];
                     }
 
-                    $existingContentJson[$input->name] = $mockedValue;
+                    $existingContentJson[$input->name] = $mockedInputs[$input->variableName];
 
                     $request = new Request($request->query->all(), $request->request->all(), $request->attributes->all(), $request->cookies->all(), $request->files->all(), $request->server->all(), json_encode($existingContentJson));
 
                     break;
                 case "HEADER":
-                    $request->headers->set($input->name, $mockedValue);
+                    $request->headers->set($input->name, $mockedInputs[$input->variableName]);
 
                     break;
             }

@@ -6,7 +6,8 @@
         "iainconnor/game-maker": "dev-master",
         "iainconnor/mocking-jay": "dev-master",
         "symfony/routing": "^3.2",
-        "symfony/http-foundation": "^3.2"
+        "symfony/http-foundation": "^3.2",
+        "symfony/http-kernel": "^3.2"
     },
     "license": "MIT",
     "authors": [

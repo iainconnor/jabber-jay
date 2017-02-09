@@ -1,9 +1,13 @@
 <?php
 
+use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouteCollection;
+
 include(dirname(__FILE__) . "/vendor/autoload.php");
 
-const MY_DOMAIN = "http://www.mydemo.com";
-const MY_API_PATH = MY_DOMAIN . "/rest_api";
+const MY_API_PATH = "/rest_api";
 
 /**
  * A demo class.
@@ -14,12 +18,14 @@ const MY_API_PATH = MY_DOMAIN . "/rest_api";
  * You can define a root path for a specific controller.
  * You can optionally ignore merging this with the parent annotation above.
  * @\IainConnor\GameMaker\Annotations\Controller(path="/foo")
+ *
+ * @\IainConnor\GameMaker\Annotations\OutputWrapper(class="OutputWrapper", property="data")
  */
 class Foo {
     /**
      * A method.
      *
-     * @\IainConnor\GameMaker\Annotations\GET(path="/sit")
+     * @\IainConnor\GameMaker\Annotations\GET(path="/sit/{fizz}")
      *
      * By default, inputs are sourced from the most likely place given the HTTP method.
      * For example, GET's come from query parameters, POST's come from post body, etc.
@@ -32,14 +38,29 @@ class Foo {
      * @\IainConnor\GameMaker\Annotations\Input(name="custom_name", arrayFormat="CSV")
      * @param string[] $bar An array of strings.
      *
+     * @param int $fizz An integer.
+     *
      * Inputs can be type-hinted as one of a set of possible values.
      * Inputs are required unless defaulted or type-hinted as null.
      * @\IainConnor\GameMaker\Annotations\Input(enum={"yes", "no"})
      * @param null|string $baz An optional stringey boolean.
+     *
+     * @return string[]
      */
-    public function bar($foo, array $bar, $baz = null) {
+    public function bar($foo, array $bar, $fizz, $baz = null) {
 
     }
+}
+
+class OutputWrapper {
+    /** @var array */
+    public $data;
+
+    /** @var string[] */
+    public $errors = [];
+
+    /** @var string[] */
+    public $messages = [];
 }
 
 $gameMaker = \IainConnor\GameMaker\GameMaker::instance();
@@ -52,9 +73,14 @@ $gameMaker->setAnnotationReader(
         new \Doctrine\Common\Cache\ArrayCache()
     ));
 
+$gameMaker->parseController(OutputWrapper::class);
+$fooController = $gameMaker->parseController(Foo::class);
 
-$controllers = [$gameMaker->parseController(Foo::class)];
+$jabberJay = \IainConnor\JabberJay\JabberJay::instance($gameMaker);
+$jabberJay->addController($fooController);
 
-$jabberJay = \IainConnor\JabberJay\JabberJay::instance($controllers);
+$request = $jabberJay->getMockRequestForEndpoint($fooController->endpoints[0]);
 
-var_dump ( $jabberJay );
+$response = $jabberJay->performRequest($request);
+
+$response->send();

@@ -338,12 +338,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/iainconnor/game-maker.git",
-                "reference": "de489fa890924363b8d9814d5aab34349dd96bd1"
+                "reference": "d39f58433bc1632207ab2d19475a656511778845"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/iainconnor/game-maker/zipball/de489fa890924363b8d9814d5aab34349dd96bd1",
-                "reference": "de489fa890924363b8d9814d5aab34349dd96bd1",
+                "url": "https://api.github.com/repos/iainconnor/game-maker/zipball/d39f58433bc1632207ab2d19475a656511778845",
+                "reference": "d39f58433bc1632207ab2d19475a656511778845",
                 "shasum": ""
             },
             "require": {
@@ -367,7 +367,7 @@
                 }
             ],
             "description": "API documentation by Annotations.",
-            "time": "2017-02-10 02:15:15"
+            "time": "2017-02-10 02:58:04"
         },
         {
             "name": "iainconnor/mocking-jay",
@@ -375,12 +375,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/iainconnor/mocking-jay.git",
-                "reference": "0cb0edc73e398cdd61b4d02a0f9cf5f2eed470c3"
+                "reference": "daa1ae1d59587b057045453940a227755c59851f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/iainconnor/mocking-jay/zipball/0cb0edc73e398cdd61b4d02a0f9cf5f2eed470c3",
-                "reference": "0cb0edc73e398cdd61b4d02a0f9cf5f2eed470c3",
+                "url": "https://api.github.com/repos/iainconnor/mocking-jay/zipball/daa1ae1d59587b057045453940a227755c59851f",
+                "reference": "daa1ae1d59587b057045453940a227755c59851f",
                 "shasum": ""
             },
             "require": {
@@ -404,7 +404,7 @@
                 }
             ],
             "description": "Object mocking by Annotations.",
-            "time": "2017-02-10 02:15:31"
+            "time": "2017-02-10 02:16:17"
         },
         {
             "name": "nikic/php-parser",

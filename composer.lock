@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "1fcf863da06d8f305fc031ee87360f087d854c8d"
+                "reference": "d116e276bc676c7048e3d6b65daa5e713b4f16e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/1fcf863da06d8f305fc031ee87360f087d854c8d",
-                "reference": "1fcf863da06d8f305fc031ee87360f087d854c8d",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/d116e276bc676c7048e3d6b65daa5e713b4f16e6",
+                "reference": "d116e276bc676c7048e3d6b65daa5e713b4f16e6",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +72,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2017-01-09 00:44:36"
+            "time": "2017-02-10 00:02:43"
         },
         {
             "name": "doctrine/cache",
@@ -338,12 +338,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/iainconnor/game-maker.git",
-                "reference": "cc3344dfd9f87c114d0376dae32b6053b80eee2d"
+                "reference": "0fb5cb1ee9efb6d9751bcdabbcbcbd6fb66a66d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/iainconnor/game-maker/zipball/cc3344dfd9f87c114d0376dae32b6053b80eee2d",
-                "reference": "cc3344dfd9f87c114d0376dae32b6053b80eee2d",
+                "url": "https://api.github.com/repos/iainconnor/game-maker/zipball/0fb5cb1ee9efb6d9751bcdabbcbcbd6fb66a66d1",
+                "reference": "0fb5cb1ee9efb6d9751bcdabbcbcbd6fb66a66d1",
                 "shasum": ""
             },
             "require": {
@@ -367,7 +367,7 @@
                 }
             ],
             "description": "API documentation by Annotations.",
-            "time": "2017-02-09 17:49:03"
+            "time": "2017-02-10 01:58:35"
         },
         {
             "name": "iainconnor/mocking-jay",
@@ -412,12 +412,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "d18ccfeec7bcfaa832debb6b133d673b8c6dcd7f"
+                "reference": "df98b0417b4d5d74514e3d2f34d3077e17772345"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/d18ccfeec7bcfaa832debb6b133d673b8c6dcd7f",
-                "reference": "d18ccfeec7bcfaa832debb6b133d673b8c6dcd7f",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/df98b0417b4d5d74514e3d2f34d3077e17772345",
+                "reference": "df98b0417b4d5d74514e3d2f34d3077e17772345",
                 "shasum": ""
             },
             "require": {
@@ -455,7 +455,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-02-08 23:03:00"
+            "time": "2017-02-09 17:43:09"
         },
         {
             "name": "psr/log",

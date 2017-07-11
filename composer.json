@@ -3,8 +3,8 @@
     "description": "API mocking and routing by Annotations.",
     "type": "library",
     "require": {
-        "iainconnor/game-maker": "dev-master",
-        "iainconnor/mocking-jay": "dev-master",
+        "iainconnor/game-maker": "^1.0.0",
+        "iainconnor/mocking-jay": "^1.0.0",
         "symfony/routing": "^3.2",
         "symfony/http-foundation": "^3.2",
         "symfony/http-kernel": "^3.2"
